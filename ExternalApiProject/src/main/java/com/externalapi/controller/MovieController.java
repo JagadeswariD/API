@@ -17,15 +17,14 @@ public class MovieController {
 	}
 	
 	@GetMapping("/searchTitle")
-    public String loginForm(Model model) {
+    public String searchMovieTitle(Model model) {
         model.addAttribute("myMovie", new Movie());
         return "titleForm";
     }
 	
     @PostMapping("/saveTitle")
-    public String saveLoginSubmission(Model model, Movie myMovie) {
-    	
-    	System.out.println(">>>>>> title=" + myMovie.getTitle());
+    public String saveMovieTitle(Model model, Movie myMovie) {
+    	System.out.println(">>>>>> title = " + myMovie.getTitle());
     	model.addAttribute("myMovie", myMovie);
         return "index";
     }
