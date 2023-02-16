@@ -1,5 +1,7 @@
 package com.externalapi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 
 import com.externalapi.model.Movie;
@@ -27,7 +28,7 @@ public class MovieController {
 	}
 
 	@GetMapping("/getMovieDetails")
-	public ResponseEntity<Movie> saveProjectSubmission(@RequestParam String movieName)
+	public ResponseEntity<List<Movie>> saveProjectSubmission(@RequestParam String movieName)
 			throws JsonMappingException, JsonProcessingException, RestClientException {
 		return ResponseEntity.ok().body(service.getMovieDetails(movieName));
 
@@ -41,8 +42,8 @@ public class MovieController {
 	
 	@PostMapping("/saveMovie")
     public String saveLoginSubmission(Model model, Movie myMovie) throws JsonMappingException, JsonProcessingException, RestClientException {
-		Movie movieInfo = service.getMovieDetails(myMovie.getTitle());
-    	model.addAttribute("myMovie", movieInfo);
+		List<Movie> movieInfo = service.getMovieDetails(myMovie.getTitle());
+    	model.addAttribute("movieList", movieInfo);
         return "Title-Result";
     }
 
