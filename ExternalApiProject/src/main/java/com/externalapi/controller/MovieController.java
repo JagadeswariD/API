@@ -2,7 +2,10 @@ package com.externalapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +16,7 @@ import com.externalapi.service.MovieService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-@RestController
+@Controller
 public class MovieController {
 	@Autowired
 	MovieService service;
@@ -29,5 +32,18 @@ public class MovieController {
 		return ResponseEntity.ok().body(service.getMovieDetails(movieName));
 
 	}
+	
+	@GetMapping("/searchMovie")
+	public String searchMovieTitle(Model model) {
+		model.addAttribute("myMovie", new Movie());
+		return "titleForm";
+	}
+	
+	@PostMapping("/saveMovie")
+    public String saveLoginSubmission(Model model, Movie myMovie) throws JsonMappingException, JsonProcessingException, RestClientException {
+		Movie movieInfo = service.getMovieDetails(myMovie.getTitle());
+    	model.addAttribute("myMovie", movieInfo);
+        return "Title-Result";
+    }
 
 }

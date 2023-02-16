@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class MovieServiceImpl implements MovieService{
 	
-	
 
 	@Override
 	public Movie getMovieDetails(String movieName) throws JsonMappingException, JsonProcessingException, RestClientException {
