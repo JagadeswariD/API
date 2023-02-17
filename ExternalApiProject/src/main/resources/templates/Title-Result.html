@@ -28,7 +28,7 @@ th, td {
 				<h2>Project Details</h2>
 
 				<table class="table table-striped " style="width: 100%">
-
+				<thead>
 					<tr>
 						<th>Title</th>
 						<th>Year</th>
@@ -43,6 +43,8 @@ th, td {
 						<th>imdbRating</th>
 						<th>Poster</th>
 						</tr>
+						</thead>
+						<tbody>
 						<tr th:each="myMovie : ${movieList}">
 						<td><span th:text="${myMovie.title}"></span></td>
 						<td><span th:text="${myMovie.year}"></span></td>
@@ -56,14 +58,15 @@ th, td {
 						<td><span th:text="${myMovie.metascore}"></span></td>
 						<td><span th:text="${myMovie.imdbRating}"></span></td>
 						<td><span th:text="${myMovie.poster}"></span></td>
+						<td><span><img th:src="*{'data:image/png;base64,'+ myMovie.encodedImage}" /></span></td>
 					</tr>
-					
+					</tbody>
 				</table>
 
 			</div>
 			
 		</div>
 	</div>
-	</div>
+	
 </body>
 </html>
