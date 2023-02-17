@@ -25,7 +25,7 @@ th, td {
 	<div class="container my-3">
 		<div class="row">
 			<div class="col-md-8 mx-auto">
-				<h2>Project Details</h2>
+				<h2>Movie Details</h2>
 
 				<table class="table table-striped " style="width: 100%">
 				<thead>
@@ -57,7 +57,6 @@ th, td {
 						<td><span th:text="${myMovie.awards}"></span></td>
 						<td><span th:text="${myMovie.metascore}"></span></td>
 						<td><span th:text="${myMovie.imdbRating}"></span></td>
-						<td><span th:text="${myMovie.poster}"></span></td>
 						<td><span><img th:src="*{'data:image/png;base64,'+ myMovie.encodedImage}" /></span></td>
 					</tr>
 					</tbody>
